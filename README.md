@@ -6,7 +6,7 @@ This was inspired from a Typescript implementation at [ADE-Client](https://githu
 
 ## Installation
 ```bash
-pip install ade_enseirb
+pip install ade-enseirb
 ```
 
 ## Requirements

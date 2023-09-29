@@ -6,19 +6,20 @@ This was inspired from a Typescript implementation at [ADE-Client](https://githu
 
 ## Installation
 ```bash
-pip install ade-enseirb
+$ pip install ade-enseirb
 ```
 
 ## Requirements
 ```bash
-pip install requests
-pip install beautifulsoup4
+$ pip install requests
+$ pip install beautifulsoup4
 ```
 
 ## Examples
 At the moment, the available examples are:
 - [Simple](examples/simple.py)
 - [ADE Printer](examples/ade_printer.py)
+- [ADE ncurses](examples/ade_ncurses.py)
 
 ## License
 ADE-ENSEIRB is licensed under the [BSD-3-Clause license](LICENSE).

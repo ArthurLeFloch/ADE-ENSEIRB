@@ -28,3 +28,5 @@ Once the user has logged in, the schedule of today and tomorrow is displayed. Th
 - `v` : Next week
 - `^` : Previous week
 - `q` : Quit
+
+Note that if the terminal is too small in height, some items will be hidden at the end.

@@ -73,7 +73,7 @@ def login(stdscr, error=None):
     try:
         ade_client = ADEClient(ade_username, password_input)
         display_plannings(stdscr)
-    except BaseException:
+    except Exception:
         login_tries += 1
         if login_tries >= 3:
             exit(1)
@@ -100,6 +100,7 @@ def display_plannings(stdscr):
         planning = ade_client.student_day_planning(ade_username, day)
         win = curses.newwin(height, x, 0, x_offset)
         win.border()
+        win_inner_height = height - 2
 
         if len(planning.events) == 0:
             win.addstr(3, 1, '┌' + '─' * (x - 4) + '┐')
@@ -111,6 +112,8 @@ def display_plannings(stdscr):
         else:
             win.addstr(3, 1, '┌' + '─' * (x - 4) + '┐')
             for k, event in enumerate(planning.events):
+                if 4 + 3 * k + 2 >= win_inner_height:
+                    break
                 start = event.start.time().strftime('%Hh%M')
                 end = event.end.time().strftime('%Hh%M')
                 time = start + ' - ' + end
@@ -136,7 +139,8 @@ def display_plannings(stdscr):
                 if k != len(planning.events) - 1:
                     win.addstr(4 + 3 * k + 2, 1, '├' + '─' * (x - 4) + '┤')
 
-            win.addstr(4 + 3 * (len(planning.events) - 1) + 2, 1, '└' + '─' * (x - 4) + '┘')
+            if 4 + 3 * (len(planning.events) - 1) + 2 < win_inner_height:
+                win.addstr(4 + 3 * (len(planning.events) - 1) + 2, 1, '└' + '─' * (x - 4) + '┘')
 
             win.refresh()
 
@@ -177,9 +181,6 @@ def main(stdscr):
     stdscr.nodelay(True)
     stdscr.keypad(True)
     login(stdscr)
-
-    stdscr.getch()
-
 
 if __name__ == "__main__":
     curses.wrapper(main)

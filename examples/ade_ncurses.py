@@ -68,7 +68,8 @@ def login(stdscr, error=None):
 
     password.move(0, 0)
     password.refresh()
-    password_input = password.getstr(0, 0, 20).decode("utf-8")
+    # Large buffer size to allow large passwords
+    password_input = password.getstr(0, 0, 256).decode("utf-8")
 
     try:
         ade_client = ADEClient(ade_username, password_input)

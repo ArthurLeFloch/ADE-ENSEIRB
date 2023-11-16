@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='ade_enseirb',
-    version='0.1.0',
+    version='0.1.1',
     author='Arthur Le Floch',
     author_email='alf.github@gmail.com',
     description='ADE API for ENSEIRB-MATMECA students',
@@ -12,6 +12,8 @@ setup(
     install_requires=[
         'requests',
         'beautifulsoup4',
+        'pytz',
+        'tzlocal',
     ],
     classifiers=[
         'Intended Audience :: Developers',

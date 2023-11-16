@@ -9,10 +9,12 @@ This was inspired from a Typescript implementation at [ADE-Client](https://githu
 $ pip install ade-enseirb
 ```
 
-## Requirements
+## Dependencies
 ```bash
 $ pip install requests
 $ pip install beautifulsoup4
+$ pip install pytz
+$ pip install tzlocal
 ```
 
 ## Examples

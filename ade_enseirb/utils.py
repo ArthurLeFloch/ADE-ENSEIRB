@@ -1,4 +1,6 @@
 import datetime
+import pytz
+from tzlocal import get_localzone
 
 
 def next_working_day():
@@ -25,13 +27,9 @@ def convert_date(date):
     Turns YYYY MM DD T HH MM SS into a datetime object
     This also changes the hour to match the french timezone
     """
-    year = date[0:4]
-    month = date[4:6]
-    day = date[6:8]
-    hour = date[9:11]
-    hour = (int(hour) + 2) % 24
-    minute = date[11:13]
-    return datetime.datetime(int(year), int(month), int(day), hour, int(minute))
+    datetime_utc = datetime.datetime.strptime(date, '%Y%m%dT%H%M%SZ').replace(tzinfo=pytz.UTC)
+    local_datetime = datetime_utc.astimezone(get_localzone())
+    return local_datetime.replace(tzinfo=None)
 
 
 class Event:
